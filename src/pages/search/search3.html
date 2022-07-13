@@ -1,0 +1,54 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>Reservation info</ion-title>
+  </ion-navbar>
+
+  <ion-row>
+    <ion-col></ion-col>
+    <ion-col width=500 style="text-align: center">
+      <button (click)="useLastDetails()" ion-button round class="search-button">Use last details</button>
+    </ion-col>
+    <ion-col></ion-col>
+  </ion-row>
+</ion-header>
+
+<ion-content>
+
+  <ion-item>
+    <ion-label>From: </ion-label>
+    <ion-input [(ngModel)]="start" id="start" text-right="true"></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-label>To: </ion-label>
+    <ion-input [(ngModel)]="end" id="end" text-right="true"></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-label>Date: </ion-label>
+    <ion-datetime [(ngModel)]="date" displayFormat="YYYY-MM-DD" min="2019" max="2020-10-31"></ion-datetime>
+  </ion-item>
+  <ion-item>
+    <ion-label>Time: </ion-label>
+    <ion-datetime [(ngModel)]="time" displayFormat="HH:mm"></ion-datetime>
+  </ion-item>
+  <ion-item>
+    <ion-label>Phone number: </ion-label>
+    <ion-input [(ngModel)]="phone" id="phone" text-right="true"></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-label>Email: </ion-label>
+    <ion-input [(ngModel)]="email" id="email" text-right="true"></ion-input>
+  </ion-item>
+
+  <ion-row>
+    <ion-col>
+    </ion-col>
+
+    <ion-col width=500 style="text-align: center">
+      <button (click)="pushPage()" ion-button round class="search-button">Make reservation</button>
+    </ion-col>
+
+    <ion-col>
+    </ion-col>
+  </ion-row>
+
+</ion-content>

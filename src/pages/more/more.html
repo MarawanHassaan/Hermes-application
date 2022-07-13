@@ -1,0 +1,36 @@
+<ion-header>
+
+<ion-toolbar>
+    <ion-title>Additional info</ion-title>
+    <ion-buttons end>
+    <button (click)="goToSlidePage()" ion-button small icon-right color="secondary">
+      Guide
+      <ion-icon name='help-circle'></ion-icon>
+    </button>
+    </ion-buttons>
+  </ion-toolbar>
+
+</ion-header>
+
+<ion-content>
+
+  <ion-list>
+    <button ion-item (click)="goToAtacPage()">
+      <ion-col><ion-icon name="log-in" color="primary"></ion-icon></ion-col>
+      Atac
+    </button>
+    <button ion-item (click)="goToMetroPage()">
+      <ion-col><ion-icon name="md-bus" color="primary"></ion-icon></ion-col>
+      Metro
+    </button>
+    <button ion-item (click)="goToUberPage()">
+      <ion-col><ion-icon name="thumbs-up" color="primary"></ion-icon></ion-col>
+      Uber/myTaxi
+    </button>
+    <button ion-item (click)="goToCarPage()">
+      <ion-col><ion-icon name="ios-car" color="primary"></ion-icon></ion-col>
+      Car sharing
+    </button>
+  </ion-list>
+
+</ion-content>

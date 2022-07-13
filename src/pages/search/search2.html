@@ -1,0 +1,332 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>Search results</ion-title>
+  </ion-navbar>
+
+  <ion-row>
+
+    <ion-col col-10>
+
+      <ion-toolbar border-top>
+
+        <ion-item [hidden]="mapDisplaying">
+          <ion-label >From: </ion-label>
+          <ion-input (change)="calculateRoute()" [(ngModel)]="start"></ion-input>
+          <button ion-button clear type="button" item-right (click)="useGeolocalization()"><ion-icon style="font-size: 20px" name="md-locate"></ion-icon></button>
+        </ion-item>
+        <ion-item [hidden]="!mapDisplaying">
+          <ion-label>From: </ion-label>
+          <ion-input (change)="calculateAndDisplayRoute(currentService)" [(ngModel)]="start"></ion-input>
+        </ion-item>
+
+        <ion-item [hidden]="mapDisplaying">
+          <ion-label>To: </ion-label>
+          <ion-input (change)="calculateRoute()" [(ngModel)]="end"></ion-input>
+        </ion-item>
+        <ion-item [hidden]="!mapDisplaying">
+          <ion-label>To: </ion-label>
+          <ion-input (change)="calculateAndDisplayRoute(currentService)" [(ngModel)]="end"></ion-input>
+        </ion-item>
+
+      </ion-toolbar>
+
+    </ion-col>
+
+    <ion-col col-2>
+      <button ion-button style="margin-top: 30px;" (click)="swapFromAndTo()">
+        <ion-icon name="md-swap" style="display: inline-block; transform: rotate(90deg);"></ion-icon>
+      </button>
+    </ion-col>
+
+
+  </ion-row>
+  <ion-segment *ngIf="!mapDisplaying" mode="ios" style="margin-bottom: 3px;" [(ngModel)]="sortingType" (ionChange)="segmentChanged($event)">
+    <ion-segment-button value="Time">
+      <ion-label no-margin="true">Sort by best time</ion-label>
+    </ion-segment-button>
+    <ion-segment-button value="Price">
+      <ion-label no-margin="true">Sort by best price</ion-label>
+    </ion-segment-button>
+  </ion-segment>
+
+</ion-header>
+
+<ion-content [hidden]="sortingType == 'Price'">
+
+  <ion-card [hidden]="!car" (click)="displayRoute('DRIVING')">
+    <ion-card-content>
+      <ion-card-title><ion-icon name="ios-car"></ion-icon> Car</ion-card-title>
+
+      <ion-grid>
+        <ion-row>
+          <ion-col>
+            <div>
+              <ion-row no-padding>{{carDirections?.routes[0]?.legs[0]?.distance.text}}</ion-row>
+              <ion-row no-padding>{{carDirections?.routes[0]?.legs[0]?.duration.text}}</ion-row>
+            </div>
+          </ion-col>
+          <ion-col text-right>
+            <div>
+              <button ion-button clear small color="danger" icon-left>
+                <ion-icon name='ios-pin'></ion-icon>
+                Open on maps
+              </button>
+            </div>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+
+    </ion-card-content>
+  </ion-card>
+
+  <ion-card [hidden]="!taxi" (click)="pushPage()">
+    <ion-card-content>
+      <ion-card-title><img style="float: left" width = "25.2" height="28.5" src="assets/img/uberLogo.png"/> Uber</ion-card-title>
+
+      <ion-grid>
+        <ion-row>
+          <ion-col>
+            <div>
+              <ion-row no-padding>{{uberDistance}} km</ion-row>
+              <ion-row no-padding>{{uberTime}} min</ion-row>
+              <ion-row no-padding>{{uberCost}} €</ion-row>
+            </div>
+          </ion-col>
+          <ion-col text-right>
+            <div>
+              <button ion-button clear small color="danger" icon-left>
+                <ion-icon name='md-call'></ion-icon>
+                Make reservation
+              </button>
+            </div>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+
+    </ion-card-content>
+  </ion-card>
+
+  <ion-card [hidden]="!taxi" (click)="pushPage()">
+    <ion-card-content>
+      <ion-card-title><img style="float: left" width = "25.2" height="28.5" src="assets/img/taxi.png"/> MyTaxi</ion-card-title>
+
+      <ion-grid>
+        <ion-row>
+          <ion-col>
+            <div>
+              <ion-row no-padding>{{myTaxiDistance}} km</ion-row>
+              <ion-row no-padding>{{myTaxiTime}} min</ion-row>
+              <ion-row no-padding>{{myTaxiCost}} €</ion-row>
+            </div>
+          </ion-col>
+          <ion-col text-right>
+            <div>
+              <button ion-button clear small color="danger" icon-left>
+                <ion-icon name='md-call'></ion-icon>
+                Make reservation
+              </button>
+            </div>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+
+    </ion-card-content>
+  </ion-card>
+
+  <ion-card [hidden]="!bus" (click)="displayRoute('TRANSIT')">
+    <ion-card-content>
+      <ion-card-title><ion-icon name="md-bus"></ion-icon> Bus/metro</ion-card-title>
+
+      <ion-grid>
+        <ion-row>
+          <ion-col>
+            <div>
+              <ion-row no-padding>{{busDirections?.routes[0]?.legs[0]?.distance.text}}</ion-row>
+              <ion-row no-padding>{{busDirections?.routes[0]?.legs[0]?.duration.text}}</ion-row>
+            </div>
+          </ion-col>
+          <ion-col text-right>
+            <div>
+              <button ion-button clear small color="danger" icon-left>
+                <ion-icon name='ios-pin'></ion-icon>
+                Open on maps
+              </button>
+            </div>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+
+    </ion-card-content>
+  </ion-card>
+
+  <ion-card [hidden]="!foot" (click)="displayRoute('WALKING')">
+    <ion-card-content>
+      <ion-card-title><ion-icon name="md-walk"></ion-icon> Foot</ion-card-title>
+
+      <ion-grid>
+        <ion-row>
+          <ion-col>
+            <div>
+              <ion-row no-padding>{{footDirections?.routes[0]?.legs[0]?.distance.text}}</ion-row>
+              <ion-row no-padding>{{footDirections?.routes[0]?.legs[0]?.duration.text}}</ion-row>
+            </div>
+          </ion-col>
+          <ion-col text-right>
+            <div>
+              <button ion-button clear small color="danger" icon-left>
+                <ion-icon name='ios-pin'></ion-icon>
+                Open on maps
+              </button>
+            </div>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+
+    </ion-card-content>
+  </ion-card>
+
+</ion-content>
+
+<ion-content [hidden]="sortingType == 'Time'">
+
+  <ion-card [hidden]="!foot" (click)="displayRoute('WALKING')">
+    <ion-card-content>
+      <ion-card-title><ion-icon name="md-walk"></ion-icon> Foot</ion-card-title>
+
+      <ion-grid>
+        <ion-row>
+          <ion-col>
+            <div>
+              <ion-row no-padding>{{footDirections?.routes[0]?.legs[0]?.distance.text}}</ion-row>
+              <ion-row no-padding>{{footDirections?.routes[0]?.legs[0]?.duration.text}}</ion-row>
+            </div>
+          </ion-col>
+          <ion-col text-right>
+            <div>
+              <button ion-button clear small color="danger" icon-left>
+                <ion-icon name='ios-pin'></ion-icon>
+                Open on maps
+              </button>
+            </div>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+
+    </ion-card-content>
+  </ion-card>
+
+  <ion-card [hidden]="!bus" (click)="displayRoute('TRANSIT')">
+    <ion-card-content>
+      <ion-card-title><ion-icon name="md-bus"></ion-icon> Bus/metro</ion-card-title>
+
+      <ion-grid>
+        <ion-row>
+          <ion-col>
+            <div>
+              <ion-row no-padding>{{busDirections?.routes[0]?.legs[0]?.distance.text}}</ion-row>
+              <ion-row no-padding>{{busDirections?.routes[0]?.legs[0]?.duration.text}}</ion-row>
+            </div>
+          </ion-col>
+          <ion-col text-right>
+            <div>
+              <button ion-button clear small color="danger" icon-left>
+                <ion-icon name='ios-pin'></ion-icon>
+                Open on maps
+              </button>
+            </div>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+
+    </ion-card-content>
+  </ion-card>
+
+  <ion-card [hidden]="!car" (click)="displayRoute('DRIVING')">
+    <ion-card-content>
+      <ion-card-title><ion-icon name="ios-car"></ion-icon> Car</ion-card-title>
+
+      <ion-grid>
+        <ion-row>
+          <ion-col>
+            <div>
+              <ion-row no-padding>{{carDirections?.routes[0]?.legs[0]?.distance.text}}</ion-row>
+              <ion-row no-padding>{{carDirections?.routes[0]?.legs[0]?.duration.text}}</ion-row>
+            </div>
+          </ion-col>
+          <ion-col text-right>
+            <div>
+              <button ion-button clear small color="danger" icon-left>
+                <ion-icon name='ios-pin'></ion-icon>
+                Open on maps
+              </button>
+            </div>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+
+    </ion-card-content>
+  </ion-card>
+
+  <ion-card [hidden]="!taxi" (click)="pushPage()">
+    <ion-card-content>
+      <ion-card-title><img style="float: left" width = "25.2" height="28.5" src="assets/img/taxi.png"/> MyTaxi</ion-card-title>
+
+      <ion-grid>
+        <ion-row>
+          <ion-col>
+            <div>
+              <ion-row no-padding>{{myTaxiDistance}} km</ion-row>
+              <ion-row no-padding>{{myTaxiTime}} min</ion-row>
+              <ion-row no-padding>{{myTaxiCost}} €</ion-row>
+            </div>
+          </ion-col>
+          <ion-col text-right>
+            <div>
+              <button ion-button clear small color="danger" icon-left>
+                <ion-icon name='md-call'></ion-icon>
+                Make reservation
+              </button>
+            </div>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+
+    </ion-card-content>
+  </ion-card>
+
+  <ion-card [hidden]="!taxi" (click)="pushPage()">
+    <ion-card-content>
+      <ion-card-title><img style="float: left" width = "25.2" height="28.5" src="assets/img/uberLogo.png"/> Uber</ion-card-title>
+
+      <ion-grid>
+        <ion-row>
+          <ion-col>
+            <div>
+              <ion-row no-padding>{{uberDistance}} km</ion-row>
+              <ion-row no-padding>{{uberTime}} min</ion-row>
+              <ion-row no-padding>{{uberCost}} €</ion-row>
+            </div>
+          </ion-col>
+          <ion-col text-right>
+            <div>
+              <button ion-button clear small color="danger" icon-left>
+                <ion-icon name='md-call'></ion-icon>
+                Make reservation
+              </button>
+            </div>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+
+    </ion-card-content>
+  </ion-card>
+
+</ion-content>
+
+
+<ion-content [hidden]="!mapDisplaying">
+  <div id="floating-panel" (click)="changeSearchView()">
+    <ion-icon name='md-arrow-back'></ion-icon> Change service
+  </div>
+  <div #map id="map"></div>
+</ion-content>

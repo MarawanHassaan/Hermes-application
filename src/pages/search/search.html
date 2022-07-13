@@ -1,0 +1,78 @@
+<ion-content padding class="getstart">
+
+  <ion-row>
+
+    <ion-col>
+      <!--<img src="../assets/img/logo.png" style="height: 50px; width: 50px ">-->
+    </ion-col>
+
+    <ion-col style="text-align: center">
+      <h1 style="font-size: x-large; color: white ;font-family: 'GT Walsheim Pro'">Hermes</h1>
+    </ion-col>
+
+    <ion-col>
+    </ion-col>
+
+  </ion-row>
+
+  <ion-row>
+    <h1 style="text-align: center; font-size: 30px; color: white; font-family: 'GT Walsheim Pro'; font-weight: bolder">
+      SEARCH FOR ROUTES, BOOK YOUR SERVICE </h1>
+  </ion-row>
+
+  <ion-row style="height:72.5%; margin-top: 25px">
+
+    <ion-col>
+
+      <ion-content class="whatever">
+
+        <ion-item style="font-size:1.5rem">
+          <ion-label style="font-size:1.5rem">From:</ion-label>lo
+          <ion-input [(ngModel)]="start" id="start" #mySelect1 placeholder="Ex: Piazza Cavour, 12"></ion-input>
+          <button ion-button clear type="button" item-right (click)="useGeolocalization()">
+            <ion-icon style="font-size: 20px" name="md-locate"></ion-icon>
+          </button>
+        </ion-item>
+        <ion-item style="font-size:1.5rem">
+          <ion-label style="font-size:1.5rem">To: </ion-label>
+          <ion-input [(ngModel)]="end" id="end" #mySelect2 placeholder="Ex: Colosseum"></ion-input>
+        </ion-item>
+        <h1 style="margin-top:5px; margin-bottom:0px;font-size:13px;color: black; font-family: 'GT Walsheim Pro'; font-weight: bolder ; transform: translate(16px,0px)">
+          SHOW RESULTS OF:</h1>
+        <ion-list style="margin: 0;">
+          <ion-item>
+            <ion-label>Foot</ion-label>
+            <ion-toggle [(ngModel)]="foot" value="foot" checked="false"></ion-toggle>
+          </ion-item>
+          <ion-item>
+            <ion-label>Car</ion-label>
+            <ion-toggle [(ngModel)]="car" value="car" checked="false"></ion-toggle>
+          </ion-item>
+          <ion-item>
+            <ion-label>Bus</ion-label>
+            <ion-toggle [(ngModel)]="bus" value="bus" checked="false"></ion-toggle>
+          </ion-item>
+          <ion-item>
+            <ion-label>Taxi</ion-label>
+            <ion-toggle [(ngModel)]="taxi" value="taxi" checked="false"></ion-toggle>
+          </ion-item>
+        </ion-list>
+
+        <ion-row>
+
+          <ion-col>
+          </ion-col>
+
+          <ion-col width=500 style="text-align: center" style="padding: 4px">
+            <button (click)="pushPage()" ion-button round class="search-button">Search routes</button>
+          </ion-col>
+
+          <ion-col>
+          </ion-col>
+
+        </ion-row>
+
+      </ion-content>
+    </ion-col>
+  </ion-row>
+</ion-content>

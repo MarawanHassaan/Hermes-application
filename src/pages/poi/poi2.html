@@ -1,0 +1,457 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>Points of interest</ion-title>
+  </ion-navbar>
+
+  <ion-toolbar border-top>
+    <ion-segment [(ngModel)]="selTab">
+      <ion-segment-button [hidden]="!food" value="food">
+        <ion-icon name="ios-restaurant"></ion-icon>
+      </ion-segment-button>
+      <ion-segment-button [hidden]="!drink" value="drink">
+        <ion-icon name="ios-wine"></ion-icon>
+      </ion-segment-button>
+      <ion-segment-button [hidden]="!night" value="night">
+        <ion-icon name="ios-moon"></ion-icon>
+      </ion-segment-button>
+      <ion-segment-button [hidden]="!museum" value="museum">
+        <img src="assets/img/museum.png" width="30" height="30" style="margin-top: 5px">
+      </ion-segment-button>
+    </ion-segment>
+  </ion-toolbar>
+</ion-header>
+
+
+<ion-content class="card-background-page">
+
+  <ion-card *ngIf="selTab=='food'">
+    <img src="assets/img/felice-a-testaccio-restaurant-rome.jpg"/>
+    <ion-card-content>
+      <ion-card-title>
+        Da Felice
+      </ion-card-title>
+      <p>
+        Tourists head for Trastevere, but locals know that Testaccio is the place to come for real Roman cooking. Da Felice has been serving down-home cucina romana for years.
+      </p>
+    </ion-card-content>
+
+    <ion-row no-padding>
+      <ion-col>
+        <ion-row no-padding>
+          7 km
+        </ion-row>
+        <ion-row no-padding>
+          32 mins
+        </ion-row>
+        <ion-row>
+          Open/Close: 12:00/1:00
+        </ion-row>
+        <ion-row>
+          Rating: 4.3/5.0
+        </ion-row>
+      </ion-col>
+
+      <ion-col text-right>
+          <a href="tel:+39-3381226554">
+            <button ion-button clear small color="danger" icon-left>
+              <ion-icon name='ios-call'></ion-icon>
+              Call 'Da Felice'
+            </button>
+          </a>
+      </ion-col>
+    </ion-row>
+  </ion-card>
+
+  <ion-card *ngIf="selTab=='food'">
+    <img src="assets/img/lapergola.jpg"/>
+    <ion-card-content>
+      <ion-card-title>
+        La Pergola
+      </ion-card-title>
+      <p>
+        High-end gourmet near the Vatican. Its Italo-centric cuisine is technically impeccable, but also light and intelligent, with few of the shock tactics of, say, Heston Blumenthal. The 10-course tasting menu , also available in a pared-back seven-course version , is a good introduction. It's open only five evenings a week, and has just 55 covers, so book ahead.
+      </p>
+    </ion-card-content>
+
+    <ion-row no-padding>
+      <ion-col>
+        <ion-row no-padding>
+          3 km
+        </ion-row>
+        <ion-row no-padding>
+          16 mins
+        </ion-row>
+        <ion-row>
+          Open/Close: 12:30/1:30
+        </ion-row>
+        <ion-row>
+          Rating: 4.8/5.0
+        </ion-row>
+      </ion-col>
+      <ion-col text-right>
+        <a href="tel:+39-3381226554">
+          <button ion-button clear small color="danger" icon-left>
+            <ion-icon name='ios-call'></ion-icon>
+            Call 'La Pergola'
+          </button>
+        </a>
+      </ion-col>
+    </ion-row>
+  </ion-card>
+
+  <ion-card *ngIf="selTab=='food'">
+    <img src="assets/img/convivium.jpg"/>
+    <ion-card-content>
+      <ion-card-title>
+        Convivium
+      </ion-card-title>
+      <p>
+        Romans invented the ‘pinsa’ – a meal very similar to pizza but with lighter ingredients to form the dough (a mix of wheat, soy and rice flour). This dish is the main course at Convivium, a recently established pinseria in Trastevere. In this cozy little haunt, eating pinsa allows you to travel back in time and indulge in a healthy, natural, low-calorie meal with a great taste.
+      </p>
+    </ion-card-content>
+
+    <ion-row no-padding>
+      <ion-col>
+        <ion-row no-padding>
+          6 km
+        </ion-row>
+        <ion-row no-padding>
+          27 mins
+        </ion-row>
+        <ion-row>
+          Open/Close: 11:00/23:30
+        </ion-row>
+        <ion-row>
+          Rating: 4.6/5.0
+        </ion-row>
+      </ion-col>
+      <ion-col text-right>
+        <a href="tel:+39-3381226554">
+          <button ion-button clear small color="danger" icon-left>
+            <ion-icon name='ios-call'></ion-icon>
+            Call 'Convivium'
+          </button>
+        </a>
+      </ion-col>
+    </ion-row>
+  </ion-card>
+
+
+  <ion-card *ngIf="selTab=='drink'">
+    <img src="assets/img/birreria-trilussa-locali-trastevere.jpg"/>
+    <ion-card-content>
+      <ion-card-title>
+        Birreria Trilussa
+      </ion-card-title>
+      <p>
+        Dedicated to the local roman poet, Birreria Trilussa is placed in the heart of the district. It is a very big pub, and offers a large choice in beer and food. Also there is the possibility of taking the "pasta no stop" menu. Open every night from 18:00 to 2:00.
+      </p>
+    </ion-card-content>
+
+    <ion-row no-padding>
+      <ion-col>
+        <ion-row no-padding>
+          2 km
+        </ion-row>
+        <ion-row no-padding>
+          17 mins
+        </ion-row>
+        <ion-row>
+          Open/Close: 18:00/2:00
+        </ion-row>
+        <ion-row>
+          Rating: 4.2/5.0
+        </ion-row>
+      </ion-col>
+      <ion-col text-right>
+        <a href="tel:+39-3381226554">
+          <button ion-button clear small color="danger" icon-left>
+            <ion-icon name='ios-call'></ion-icon>
+            Call 'Birreria Trilussa'
+          </button>
+        </a>
+      </ion-col>
+    </ion-row>
+  </ion-card>
+
+  <ion-card *ngIf="selTab=='drink'">
+    <img src="assets/img/colors-club-locali-trastevere.jpg"/>
+    <ion-card-content>
+      <ion-card-title>
+        Colors club
+      </ion-card-title>
+      <p>
+        Placed in Trastevere, Colors club is a very youth club in which you can drink different kind of cocktails made with artisan syrups, or play with the foosball. Open every night from 18:00 to 3:00
+      </p>
+    </ion-card-content>
+
+    <ion-row no-padding>
+      <ion-col>
+        <ion-row no-padding>
+          2 km
+        </ion-row>
+        <ion-row no-padding>
+          19 mins
+        </ion-row>
+        <ion-row>
+          Open/Close: 17:00/1:30
+        </ion-row>
+        <ion-row>
+          Rating: 4.7/5.0
+        </ion-row>
+      </ion-col>
+      <ion-col text-right>
+        <a href="tel:+39-3381226554">
+          <button ion-button clear small color="danger" icon-left>
+            <ion-icon name='ios-call'></ion-icon>
+            Call 'Colors Club'
+          </button>
+        </a>
+      </ion-col>
+    </ion-row>
+  </ion-card>
+
+
+  <ion-card *ngIf="selTab=='night'">
+    <img src="assets/img/goa-club.jpg"/>
+    <ion-card-content>
+      <ion-card-title>
+        Goa Club
+      </ion-card-title>
+      <p>
+        One of the best electronic clubs in town.
+        The cutting edge programming fortified its reputation as one of the most
+        forward-thinking venues in Italy.
+      </p>
+    </ion-card-content>
+
+    <ion-row no-padding>
+      <ion-col>
+        <ion-row no-padding>
+          7 km
+        </ion-row>
+        <ion-row no-padding>
+          32 mins
+        </ion-row>
+        <ion-row>
+          Open/Close: 23:00/3:00
+        </ion-row>
+        <ion-row>
+          Rating: 4.6/5.0
+        </ion-row>
+      </ion-col>
+      <ion-col text-right>
+        <a href="tel:+39-3381226554">
+          <button ion-button clear small color="danger" icon-left>
+            <ion-icon name='ios-call'></ion-icon>
+            Call 'Goa Club'
+          </button>
+        </a>
+      </ion-col>
+    </ion-row>
+  </ion-card>
+
+  <ion-card *ngIf="selTab=='night'">
+    <img src="assets/img/circolo-degli-illuminati.jpg"/>
+    <ion-card-content>
+      <ion-card-title>
+        Circolo degli illuminati
+      </ion-card-title>
+      <p>
+        With 3 different clubrooms,
+        the club offers a variety of musical genres. Room01 oriented
+        toward Tech House, Room02 Hip Hop & Room03, a perfect place
+        to relax with chill music.
+      </p>
+    </ion-card-content>
+
+    <ion-row no-padding>
+      <ion-col>
+        <ion-row no-padding>
+          8 km
+        </ion-row>
+        <ion-row no-padding>
+          34 mins
+        </ion-row>
+        <ion-row>
+          Open/Close: 23:00/4:00
+        </ion-row>
+        <ion-row>
+          Rating: 4.4/5.0
+        </ion-row>
+      </ion-col>
+      <ion-col text-right>
+        <a href="tel:+39-3381226554">
+          <button ion-button clear small color="danger" icon-left>
+            <ion-icon name='ios-call'></ion-icon>
+            Call 'Circolo degli Illuminati'
+          </button>
+        </a>
+      </ion-col>
+    </ion-row>
+  </ion-card>
+
+  <ion-card *ngIf="selTab=='night'">
+    <img src="assets/img/gus.jpg"/>
+    <ion-card-content>
+      <ion-card-title>
+        Gus
+      </ion-card-title>
+      <p>
+        Ready to sip cocktails and dance the night in a lounge area with a
+        bar & dance floor. Glamorous people, elegant vibe & contemporary music await you
+        for a night that you won’t forget.
+      </p>
+    </ion-card-content>
+
+
+    <ion-row no-padding>
+      <ion-col>
+        <ion-row no-padding>
+          8 km
+        </ion-row>
+        <ion-row no-padding>
+          38 mins
+        </ion-row>
+        <ion-row>
+          Open/Close: 22:30/3:00
+        </ion-row>
+        <ion-row>
+          Rating: 4.6/5.0
+        </ion-row>
+      </ion-col>
+      <ion-col text-right>
+        <a href="tel:+39-3381226554">
+          <button ion-button clear small color="danger" icon-left>
+            <ion-icon name='ios-call'></ion-icon>
+            Call 'Gus'
+          </button>
+        </a>
+      </ion-col>
+    </ion-row>
+  </ion-card>
+
+
+  <ion-card *ngIf="selTab=='museum'">
+    <img src="assets/img/Museo-di-roma.jpg"/>
+    <ion-card-content>
+      <ion-card-title>
+        Museo di Roma in Trastevere
+      </ion-card-title>
+      <p>
+        Its collection focuses on popular life in Rome (18th to 20th cen.).
+        You watch mannequins depicting scenes of Roman life. price: €6
+      </p>
+    </ion-card-content>
+
+
+    <ion-row no-padding>
+      <ion-col>
+        <ion-row no-padding>
+          4 km
+        </ion-row>
+        <ion-row no-padding>
+          22 mins
+        </ion-row>
+        <ion-row>
+          Open/Close: 10:00/19:00
+        </ion-row>
+        <ion-row>
+          Rating: 4.7/5.0
+        </ion-row>
+      </ion-col>
+      <ion-col text-right>
+        <a href="tel:+39-3381226554">
+          <button ion-button clear small color="danger" icon-left>
+            <ion-icon name='ios-call'></ion-icon>
+            Call 'Museo di Roma'
+          </button>
+        </a>
+      </ion-col>
+    </ion-row>
+  </ion-card>
+
+  <ion-card *ngIf="selTab=='museum'">
+    <img src="assets/img/musei-capitolini.jpg"/>
+    <ion-card-content>
+      <ion-card-title>
+        Musei Capitolini
+      </ion-card-title>
+      <p>
+        It was the centre of political
+        life in ancient Rome. Visit 2nd floor of the Palazzo dei Conservatori
+        to see the famous bronze she-wolf
+        nursing Romulus and Remus. price:€15
+      </p>
+    </ion-card-content>
+
+
+    <ion-row no-padding>
+      <ion-col>
+        <ion-row no-padding>
+          2 km
+        </ion-row>
+        <ion-row no-padding>
+          10 mins
+        </ion-row>
+        <ion-row>
+          Open/Close: 10:30/18:00
+        </ion-row>
+        <ion-row>
+          Rating: 4.6/5.0
+        </ion-row>
+      </ion-col>
+      <ion-col text-right>
+        <a href="tel:+39-3381226554">
+          <button ion-button clear small color="danger" icon-left>
+            <ion-icon name='ios-call'></ion-icon>
+            Call 'Musei Capitolini'
+          </button>
+        </a>
+      </ion-col>
+    </ion-row>
+  </ion-card>
+
+  <ion-card *ngIf="selTab=='museum'">
+    <img src="assets/img/galleria-Borghese.jpg"/>
+
+    <ion-card-content>
+      <ion-card-title>
+        Galleria Borghese
+      </ion-card-title>
+      <p>
+        Bernini’s ability to transform a chunk of marble into the
+        soft flesh of Persephone, yielding to the grip of Pluto is reason
+        enough to visit. Price:€15
+      </p>
+    </ion-card-content>
+
+
+    <ion-row no-padding>
+      <ion-col>
+        <ion-row no-padding>
+          3 km
+        </ion-row>
+        <ion-row no-padding>
+          18 mins
+        </ion-row>
+        <ion-row>
+          Open/Close: 10:00/19:30
+        </ion-row>
+        <ion-row>
+          Rating: 4.5/5.0
+        </ion-row>
+      </ion-col>
+      <ion-col text-right>
+        <a href="tel:+39-3381226554">
+          <button ion-button clear small color="danger" icon-left>
+            <ion-icon name='ios-call'></ion-icon>
+            Call 'Galleria Borghese'
+          </button>
+        </a>
+      </ion-col>
+    </ion-row>
+  </ion-card>
+
+
+</ion-content>

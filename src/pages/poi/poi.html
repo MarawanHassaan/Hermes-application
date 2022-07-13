@@ -1,0 +1,68 @@
+<ion-content padding class="getstart">
+  <ion-row>
+    <ion-col>
+      <!--<img src="../assets/img/logo.png" style="height: 50px; width: 50px;">-->
+    </ion-col>
+    <ion-col style="text-align: center">
+      <h1 style="font-size: x-large; color: white ;font-family: 'GT Walsheim Pro'">Hermes</h1>
+    </ion-col>
+    <ion-col>
+    </ion-col>
+  </ion-row>
+
+  <ion-row>
+    <h1 style="text-align: center; font-size: 30px; color: white; font-family: 'GT Walsheim Pro'; font-weight: bolder">SEARCH INTERESTING PLACES AROUND YOU </h1>
+  </ion-row>
+
+  <ion-row style="height:68%; margin-top: 30px;">
+
+    <ion-col>
+
+      <ion-content>
+        
+        <ion-item>
+          <ion-label>From: </ion-label>
+          <ion-input [(ngModel)]="start" id="start" #mySelect1 placeholder="Ex: Piazza di Spagna"></ion-input>
+          <button ion-button clear type="button" item-right (click)="useGeolocalization()"><ion-icon style="font-size: 20px" name="md-locate"></ion-icon></button>
+        </ion-item>
+        <h1 style="margin-top:7px; margin-bottom:0px;font-size:15px;color: black; font-family: 'GT Walsheim Pro'; font-weight: bolder ; transform: translate(16px,0px)">
+          SHOW RESULTS OF:</h1>
+        <ion-list>
+          <ion-item>
+            <ion-label>Restaurant</ion-label>
+            <ion-toggle [(ngModel)]="food" value="food" checked="false"></ion-toggle>
+          </ion-item>
+          <ion-item>
+            <ion-label>Pub</ion-label>
+            <ion-toggle [(ngModel)]="drink" value="drink" checked="false"></ion-toggle>
+          </ion-item>
+          <ion-item>
+            <ion-label>Night events</ion-label>
+            <ion-toggle [(ngModel)]="night" value="night" checked="false"></ion-toggle>
+          </ion-item>
+          <ion-item>
+            <ion-label>Museum</ion-label>
+            <ion-toggle [(ngModel)]="museum" value="museum" checked="false"></ion-toggle>
+          </ion-item>
+        </ion-list>
+
+        <ion-row>
+
+          <ion-col>
+          </ion-col>
+
+          <ion-col width=500 style="text-align: center">
+            <button (click)="pushPage()" ion-button round class="search-button">Search points of interest</button>
+          </ion-col>
+
+          <ion-col>
+          </ion-col>
+
+        </ion-row>
+
+      </ion-content>
+
+    </ion-col>
+
+  </ion-row>
+</ion-content>
